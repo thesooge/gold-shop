@@ -7,6 +7,23 @@
 <h4>PRICE : {{product.unit_price}}</h4>
 <h6>description : {{product.description}}</h6>
 
+<form action="{% url 'product-comment' product.id %}" method="POST">
+    {% csrf_token %}
+    {{comment}}
+    <input type='submit' value='send'>
+</form>
 
+{% for comment in product.comments.all %}
+<h1>{{comment.user}}</h1>
+<h4>{{comment.body}}</h4>
+{% if comment.user == user %}
+<form action="{% url 'comment_delete' comment.id %}" method= 'POST'>
+    {% csrf_token %}
+    <div>
+        <button type='submit' class='btn danger-color' >Delete</button>
+    </div>
+{% endif %}
+</form>
+{% endfor %}
 
 {% endblock content %}

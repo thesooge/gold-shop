@@ -27,8 +27,13 @@ class ProductComment(models.Model):
         ('NC', 'Not-Checked'),
     )
 
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
+    product = models.ForeignKey(Product, on_delete=models.PROTECT, related_name='comments')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comments')
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     status = models.CharField(choices=STATUS, max_length=255, default='NC')
+
+    
+    def get_absolute_url(self):
+        return reverse("product_detail", kwargs={"pk": self.product.pk})
+    
