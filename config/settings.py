@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'core',
     'products',
+    'pages',
 ]
 
 MIDDLEWARE = [
@@ -162,5 +163,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 #all auth
-LOGIN_REDIRECT_URL = ''
-LOGOUT_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = 'home_page'
+LOGOUT_REDIRECT_URL = 'home_page'
