@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.shortcuts import reverse
 
 # Create your models here.
 
@@ -13,6 +14,10 @@ class Product(models.Model):
     description = models.TextField()
     iamge = models.ImageField(upload_to='prodcts_cover/')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products')
+
+    def get_absolute_url(self):
+        return reverse("product-list", kwargs={"pk": self.pk})
+    
 
 
 
