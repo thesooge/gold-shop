@@ -40,14 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    #third_party_apps
     'allauth',
     'allauth.account',
     
-    
+    #own_apps
     'debug_toolbar',
     'core',
     'products',
     'pages',
+    'cart',
 ]
 
 MIDDLEWARE = [
