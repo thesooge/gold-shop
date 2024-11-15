@@ -9,7 +9,8 @@ from products.models import Product
 def cart_list(request):
     cart = Cart(request)
 
-    return render(request, 'cart/cart_list.html', {'cart': cart,})
+
+    return render(request, 'cart/cart_list.html', {'cart': cart})
 
 
 def cart_add(request, product_id):

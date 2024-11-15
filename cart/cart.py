@@ -1,5 +1,4 @@
 from decimal import Decimal
-from django.contrib import sessions
 
 from products.models import Product
 
@@ -22,30 +21,28 @@ class Cart:
 
 
     def add(self, product, quantity=1, override_quantity=False):
-        product_id = str(product.id)
+        product_id_str = str(product.id)
 
-        if product_id not in self.cart:
-            self.cart['product_id'] = {'quantity' : quantity,
-                                       'price': str(product.unit_price)}
+        if product_id_str not in self.cart:
+            self.cart[product_id_str] = {'quantity' : quantity}
         if override_quantity:   
-            self.cart['product_id']['quantity'] = quantity
+            self.cart[product_id_str]['quantity'] = quantity
         else:
-            self.cart['product_id']['quantity'] += quantity
+            self.cart[product_id_str]['quantity'] += quantity
 
         self.save()
 
     def __iter__(self):
         product_ids = self.cart.keys()
+        
         products = Product.objects.filter(id__in=product_ids)
 
         cart = self.cart.copy()
 
         for product in products:
-            self.cart[str(product.id)]['product_obj'] = product
+            cart[str(product.id)]['product_obj'] = product
 
         for item in cart.values():
-            item['price'] = Decimal(item['price'])
-            item['total_price'] = Decimal(item['price']) * item['quantity']
             yield item    
 
 

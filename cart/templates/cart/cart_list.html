@@ -1,9 +1,9 @@
 {% extends "_base.html" %}
 
 {% block content %}
-
 {% for item in cart %}
-    {{item.product_obj.title}}
+    <h2>title: {{item.product_obj.title}}</h2>
+    <h3>quantity: {{item.quantity}}</h3>
+    <h4>price: {{item.product_obj.unit_price}}
 {% endfor %}
-
 {% endblock content %}
