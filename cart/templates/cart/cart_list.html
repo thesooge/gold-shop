@@ -4,6 +4,13 @@
 {% for item in cart %}
     <h2>title: {{item.product_obj.title}}</h2>
     <h3>quantity: {{item.quantity}}</h3>
-    <h4>price: {{item.product_obj.unit_price}}
+    <h4>price: {{item.product_obj.unit_price}}</h4>
+    <form action="{% url 'cart_remove' item.product_obj.id %}" method="POST">
+        {% csrf_token %}
+        <button type='submit'>remove from cart</button>
+    </form>
+    <h6> _____________ </h6>
+
 {% endfor %}
+<p>total cart-value: {{cart.get_sub_total_price}}</p>
 {% endblock content %}

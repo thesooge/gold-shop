@@ -24,7 +24,8 @@ class Cart:
         product_id_str = str(product.id)
 
         if product_id_str not in self.cart:
-            self.cart[product_id_str] = {'quantity' : quantity}
+            self.cart[product_id_str] = {'quantity' : quantity,
+                                         'price' : str(product.unit_price)}
         if override_quantity:   
             self.cart[product_id_str]['quantity'] = quantity
         else:
