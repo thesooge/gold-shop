@@ -12,7 +12,7 @@ def cart_list(request):
     return render(request, 'cart/cart_list.html', {'cart': cart,})
 
 
-def add_to_cart(request, product_id):
+def cart_add(request, product_id):
     cart = Cart(request)
 
     product = get_object_or_404(Product, id=product_id)
@@ -24,3 +24,9 @@ def add_to_cart(request, product_id):
         cart.add(product, quantity)
     
     return redirect('cart_list')
+
+def cart_remove(request, product_id):
+    cart = Cart(request)
+    cart.delete(product_id)
+    return redirect('cart_list')
+
