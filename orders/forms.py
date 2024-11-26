@@ -6,5 +6,5 @@ class OrderForm(ModelForm):
         model = Order
         fields = ['first_name', 'last_name', 'email', 'address']
         widgets = {
-            'address': Textarea(attrs={'cols': 80, 'rows': 20}),
+            'address': Textarea(attrs={'cols': 30, 'rows': 5}),
         }
