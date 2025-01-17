@@ -121,14 +121,14 @@
                                 </div>  
                             </div>
                         </div>
-                        {% comment %} <div class="row no-gutters border-top pt--20 mt--20">
+                        <div class="row no-gutters border-top pt--20 mt--20">
                             <div class="col-sm-6 text-sm-right">
-                                <form action={{cart.clear}} method='POST'>
+                                <form action="{% url 'cart_clear' %}" method='POST'>
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-primary btn-md my-0 p">empty cart</button>
                                 </form>
                             </div>
-                        </div> {% endcomment %}
+                        </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="cart-collaterals">

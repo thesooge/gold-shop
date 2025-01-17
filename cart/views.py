@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.views.decorators.http import require_POST
 
 from .cart import Cart
 from .forms import AddToCartForm
@@ -31,3 +32,8 @@ def cart_remove(request, product_id):
     cart.delete(product_id)
     return redirect('cart_list')
 
+@require_POST
+def clear_cart(request):
+    cart = Cart(request)
+    cart.clear()
+    return redirect('product-list')
