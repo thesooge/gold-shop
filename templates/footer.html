@@ -1,14 +1,37 @@
 <style>
+  /* styles.css or your main CSS file */
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .content {
+    flex: 1;
+  }
+
   .footer {
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    transition: all 1s ease;
+  }
+  .footer.fixed {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    color: white;
-    text-align: center;
   }
   </style>
+  
+<div class="wrapper">
 <footer class="footer page-footer text-center font-small mt-4 wow fadeIn">
+  <hr class="my-4">
 
     <hr class="my-4">
 
@@ -56,3 +79,15 @@
     <!--/.Copyright-->
 
   </footer>
+
+</div>  
+<script>
+  window.addEventListener('scroll', function() {
+    var footer = document.querySelector('.footer');
+    if (window.scrollY > 100) { // Adjust the scroll value as needed
+      footer.classList.add('fixed');
+    } else {
+      footer.classList.remove('fixed');
+    }
+  });
+</script>
