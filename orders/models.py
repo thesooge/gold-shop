@@ -5,6 +5,11 @@ from products.models import Product
 # Create your models here.
 
 class Order(models.Model):
+    STATUS = (
+        ('C', 'Compeleted'),
+        ('P', 'Pending'),
+        ('NC', 'Not-Checked'),
+    )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -14,7 +19,7 @@ class Order(models.Model):
     is_paid = models.BooleanField(default=False)
 
     order_date = models.DateTimeField(auto_now_add=True)
-
+    order_status = models.CharField(choices=STATUS, max_length=255, default='NC')
     def get_total_price(self):
         return sum(item.price * item.quantity for item in self.items.all())
 

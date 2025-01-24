@@ -2,17 +2,17 @@
 {% extends '_base.html' %}
 
 {% block content %} 
-    <h1>Order List</h1>
+    <h1 class= "m-4" >Order List</h1>
     
-    <table>
+    <table class="table-bordered m-4">
         <thead>
             <tr>
-                <th>Order ID | </th>
-                <th>Product Count | </th>
-                <th>IsPaid | </th>
+                <th>Order ID</th>
+                <th>Product Count</th>
+                <th>Is Paid</th>
                 <th>Total Price</th>
-
-                <br>
+                <th>Order Status</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -23,11 +23,12 @@
                 <td>{{ order.items.count }}</td>
                 <td>{{ order.is_paid }}</td>
                 <td>{{ order.get_total_price }}</td>
-                <td><a href="{% url 'order-delete' order.id %}">Delete</a></td>
+                <td>{{ order.get_order_status_display }}</td>
+                <td><a href="{% url 'order-delete' order.id %}" class="delete-link">Delete</a></td>
             </tr>
-
             {% endif %}
             {% endfor %}
         </tbody>
     </table>
 {% endblock %}
+
