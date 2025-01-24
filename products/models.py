@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.shortcuts import reverse
+from django.db.models import F
 
 # Create your models here.
 
@@ -20,6 +21,7 @@ class Product(models.Model):
     
     def get_category(self):
         return self.category.title
+    
     
 
 

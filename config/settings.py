@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     #third_party_apps
     'allauth',
     'allauth.account',
+    'crispy_forms',
+    "crispy_bootstrap4",
     
     #own_apps
     'debug_toolbar',
@@ -163,3 +165,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #all auth
 LOGIN_REDIRECT_URL = 'home_page'
 LOGOUT_REDIRECT_URL = 'home_page'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"

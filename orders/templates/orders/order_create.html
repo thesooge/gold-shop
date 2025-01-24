@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% load crispy_forms_tags %}
 
 
 {% block content %}
@@ -25,12 +26,12 @@
                 <!-- Checkout Area Start -->  
                 <div class="col-lg-6">
                     <div class="checkout-title mt--10">
-                        <h2> order details</h2>
+                        {% comment %} <h2> order details</h2> {% endcomment %}
                     </div>
                     <div class="checkout-form">
                         <form action="{% url 'order-create' %}"  method= 'POST' class="form form--checkout">
                             {% csrf_token %}
-                            {{form.as_p}}
+                            {{form|crispy}}
                             {% comment %} <div class="form-row mb--20">
                                 <div class="form__group col-md-6 mb-sm--30">
                                     <label for="billing_fname" class="form__label form__label--2">name  <span class="required">*</span></label>
