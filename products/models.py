@@ -8,6 +8,9 @@ from django.db.models import F
 class Category(models.Model):
     title = models.CharField(max_length=255)
 
+    def __str__(self) -> str:
+        return self.title
+
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
@@ -22,6 +25,8 @@ class Product(models.Model):
     def get_category(self):
         return self.category.title
     
+    def __str__(self) -> str:
+        return self.title
     
 
 
