@@ -13,6 +13,8 @@
                 <th>Total Price</th>
                 <th>Order Status</th>
                 <th>Delete</th>
+                <th>Condition</th>
+
             </tr>
         </thead>
         <tbody>
@@ -25,6 +27,7 @@
                 <td>{{ order.get_total_price }}</td>
                 <td>{{ order.get_order_status_display }}</td>
                 <td><a href="{% url 'order-delete' order.id %}" class="delete-link">Delete</a></td>
+                <td><a href="{% url 'order-update' order.id %}" class="delete-link">Update</a></td>
             </tr>
             {% endif %}
             {% endfor %}

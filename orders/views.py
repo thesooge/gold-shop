@@ -38,6 +38,7 @@ def order_create(request):
         messages.info(request, "Your order craeted succesfully")
         order_form = OrderForm()
         return redirect("order-list")
+    
 
     
     return render(request, 'orders/order_create.html', {'form' : order_form, })
@@ -57,3 +58,9 @@ class OrderDelete(generic.DeleteView):
     def post(self, request, *args, **kwargs):
         messages.info(request, "Order Deleted Successfully")
         return super().post(request, *args, **kwargs)
+    
+
+class OrderUpdate(generic.UpdateView):
+    model = Order
+    template_name = "orders/order_create.html"  
+    fields = ["first_name", "last_name", "email", "address"] 
