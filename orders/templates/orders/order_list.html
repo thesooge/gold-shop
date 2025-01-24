@@ -1,0 +1,33 @@
+
+{% extends '_base.html' %}
+
+{% block content %} 
+    <h1>Order List</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID | </th>
+                <th>Product Count | </th>
+                <th>IsPaid | </th>
+                <th>Total Price</th>
+
+                <br>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            {% if user.is_authenticated and order.user == user %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.items.count }}</td>
+                <td>{{ order.is_paid }}</td>
+                <td>{{ order.get_total_price }}</td>
+                <td><a href="{% url 'order-delete' order.id %}">Delete</a></td>
+            </tr>
+
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
