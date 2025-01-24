@@ -36,6 +36,9 @@ def order_create(request):
         
         cart.clear()
         messages.info(request, "Your order craeted succesfully")
+        order_form = OrderForm()
+        return redirect("order-list")
+
     
     return render(request, 'orders/order_create.html', {'form' : order_form, })
        
