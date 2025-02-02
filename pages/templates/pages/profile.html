@@ -1,0 +1,48 @@
+{% extends "_base.html" %}
+{% block content %}
+<style>
+    /* CSS styles for user profile page */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    .profile-section {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #333;
+    }
+    .order-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    /* Add more CSS styling as needed */
+</style>
+</head>
+<body>
+<div class="profile-section">
+    <h2>User Profile</h2>
+    <p>Welcome, {{user.username}}!</p>
+    <h3>Orders</h3>
+    <ul class="order-list">
+        {% for order in orders %}
+            <li>Order #{{order.id}} - Price: {{order.get_total_price}} Status: {{order.get_order_status_display}} | <a href="{% url 'order-delete' order.id %}" class="delete-link">Delete</a> | <a href="{% url 'order-update' order.id %}" class="delete-link">Update</a></li>
+        
+        {% endfor %}
+    </ul>
+    
+</div>
+
+<div class="profile-section">
+    <h3>User Options</h3>
+    <ul>
+        <li><a href="{% url 'update-profile' %}">Edit Profile</a></li>
+        <li><a href="{% url 'account_change_password' %}">Change Password</a></li>
+        <li><a href="{% url 'account_logout' %}">Logout</a></li>
+        <!-- Add more options as needed -->
+    </ul>
+</div>
+</body>
+{% endblock content %}
