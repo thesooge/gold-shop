@@ -41,9 +41,16 @@
           </ul>
           <!-- Links -->
 
-          <form class="form-inline">
+          {% comment %} <form class="form-inline">
             <div class="md-form my-0">
               <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </div>
+          </form> {% endcomment %}
+          <form action="/search" method="GET">
+            {% csrf_token %}
+            <div class="md-form my-0">
+                <input type="text" class="form-control mr-sm-2" name="search" id="search exampleInputPassword1" placeholder="Search a Product">
+                <button type="submit" class="btn btn-sm btn-blue"><i class="fa fa-search"></i></button>
             </div>
           </form>
         </div>
