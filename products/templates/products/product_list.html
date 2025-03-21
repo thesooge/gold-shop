@@ -90,12 +90,9 @@
                 </h5>
 
                 <h4 class="font-weight-bold blue-text">
-                  <strong>$
-                  {% if item.discount_price %}
-                  {{ item.discount_price }}
-                  {% else %}
-                  {{ item.unit_price }}
-                  {% endif %}
+                  <strong>
+                  {{ item.unit_price|floatformat }}
+                  T
                   </strong>
                 </h4>
 

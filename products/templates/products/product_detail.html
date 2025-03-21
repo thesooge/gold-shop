@@ -37,13 +37,14 @@
               </span>
               <span>${{ product.unit_price }}</span>
               {% else %} {% endcomment %}
-              <span>${{ product.unit_price }}</span>
+              <span>{{ product.unit_price|floatformat:"0" }} T </span>
               {% comment %} {% endif %} {% endcomment %}
             </p>
 
             <p class="lead font-weight-bold">Title</p>
 
             <p>{{ product.title }}</p>
+            <p>amount : {{product.amount}} g </p>
 
             {% comment %} <form class="d-flex justify-content-left">
               <!-- Default input -->
@@ -88,7 +89,6 @@
         <div class="col-md-6 text-center">
 
           <h4 class="my-4 h4">Additional information</h4>
-
           <p>{{product.description}}</p>
 
         </div>

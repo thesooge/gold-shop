@@ -3,7 +3,14 @@ from django.conf import settings
 from django.shortcuts import reverse
 from django.db.models import F
 
+import requests
 # Create your models here.
+
+def get_price_from_api():
+    url = "http://api.navasan.tech/latest/?api_key=freep3Td2IxL96F6BzJ2axfrB4CdxUhs"
+    response = requests.get(url)
+    return (int(response.json()['18ayar']['value']))
+
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
@@ -14,7 +21,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
-    unit_price = models.PositiveIntegerField()
+    amount = models.FloatField()
     description = models.TextField()
     iamge = models.ImageField(upload_to='prodcts_cover/')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products')
@@ -25,10 +32,17 @@ class Product(models.Model):
     def get_category(self):
         return self.category.title
     
-    def __str__(self) -> str:
+    def __str__(self):
         return self.title
     
-
+    @property
+    def unit_price(self):
+        # get live price for gold
+        # because of the api limit, we will use a fixed price
+        try:
+            return (get_price_from_api() * self.amount)
+        except:
+            return self.amount * 7900000
 
 
 class ProductComment(models.Model):
