@@ -129,8 +129,35 @@
 
     </div>
   </main>
+  <hr>
 
-{% endblock content %}
+  <div class="container mt-5">
+    <h4 class="mb-4">Comments</h4>
+    
+    <form action="{% url 'product-comment' product.id %}" method="POST" class="mb-4">
+      {% csrf_token %}
+      <div class="form-group">
+        <textarea class="form-control" name="body" rows="3" placeholder="Add a comment..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+
+    {% for comment in product.comments.all %}
+    <div class="media mb-4">
+      <img class="d-flex mr-3 rounded-circle" src="{% static 'img/user.png' %}" alt="User image" width="50">
+      <div class="media-body">
+        <h5 class="mt-0">{{ comment.user }}</h5>
+        <p>{{ comment.body }}</p>
+        {% if comment.user == user %}
+        <form action="{% url 'comment_delete' comment.id %}" method="POST" class="mt-2">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 {% comment %} 
 
 
@@ -145,7 +172,8 @@
     </div>
     <button type='submit'>add to cart</button>
 </form>
-<form action="{% url 'product-comment' product.id %}" method="POST">
+{% endcomment %}
+{% comment %} <form action="{% url 'product-comment' product.id %}" method="POST">
     {% csrf_token %}
     {{comment}}
     <input type='submit' value='send'>
@@ -162,6 +190,6 @@
     </div>
 {% endif %}
 </form>
-{% endfor %}
+{% endfor %} {% endcomment %}
 
-{% endblock content %} {% endcomment %}
+{% endblock content %} 
