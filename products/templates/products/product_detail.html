@@ -130,8 +130,8 @@
     </div>
   </main>
   <hr>
-
   <div class="container mt-5">
+    {% if user.is_authenticated %}
     <h4 class="mb-4">Comments</h4>
     
     <form action="{% url 'product-comment' product.id %}" method="POST" class="mb-4">
@@ -142,6 +142,10 @@
       <button type="submit" class="btn btn-primary">Send</button>
     </form>
 
+    
+    {% else %}
+        <p class="alert alert-danger">only logged in users can comment</p>
+    {% endif %}
     {% for comment in product.comments.all %}
     <div class="media mb-4">
       <img class="d-flex mr-3 rounded-circle" src="{% static 'img/user.png' %}" alt="User image" width="50">

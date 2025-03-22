@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import ProductCommentForm
 from .models import Product, ProductComment, Category
@@ -47,7 +48,7 @@ class ProductDetail(generic.DetailView):
 
         return context
     
-class CommentsView(generic.CreateView):
+class CommentsView(LoginRequiredMixin,generic.CreateView):
     model = ProductComment
     form_class = ProductCommentForm 
 
