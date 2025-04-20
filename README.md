@@ -187,9 +187,6 @@ DATABASES = {
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 👥 Authors
-
-- Your Name - Initial work - [Your GitHub Profile]
 
 ## 🙏 Acknowledgments
 
@@ -199,7 +196,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 📞 Support
 
-For support, email [your-email] or create an issue in the repository.
+For support, email [thesooge.8313@gmail.com] or create an issue in the repository.
 
 video and features description in linkedin:
 https://www.linkedin.com/feed/update/urn:li:activity:7309314374295347200/
